@@ -39,4 +39,39 @@ Program Point dirancang dengan menggunakan teknologi berikut:
 ## Struktur Direktori
 
 Berikut adalah struktur direktori utama proyek:
+|-- app
+|-- bootstrap
+|-- config
+|-- database
+|-- public
+|-- resources
+|-- routes
+|-- storage
+|-- tests
+|-- vendor
+|-- .env
+|-- .gitignore
+|-- artisan
+|-- composer.json
+|-- package.json
+|-- README.md
+|-- server.php
+|-- webpack.mix.js
+
+
+## Kontribusi
+
+Kami sangat terbuka terhadap kontribusi dari komunitas. Jika Anda ingin berkontribusi pada pengembangan program Point, silakan ikuti langkah-langkah berikut:
+
+1. Fork repositori ini.
+2. Buat branch baru untuk fitur atau perbaikan yang akan Anda tambahkan (git checkout -b fitur-baru).
+3. Lakukan perubahan yang diperlukan.
+4. Commit perubahan Anda (git commit -m 'Menambahkan fitur baru').
+5. Push ke branch di repositori Anda (git push origin fitur-baru).
+6. Ajukan pull request ke repositori utama.
+
+## Lisensi
+
+Tulis lisensi proyek Anda di sini.
+
 
