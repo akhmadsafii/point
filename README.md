@@ -38,25 +38,30 @@ Program Point dirancang dengan menggunakan teknologi berikut:
 
 ## Struktur Direktori
 
-Berikut adalah struktur direktori utama proyek:
-|-- app
-|-- bootstrap
-|-- config
-|-- database
-|-- public
-|-- resources
-|-- routes
-|-- storage
-|-- tests
-|-- vendor
-|-- .env
-|-- .gitignore
-|-- artisan
-|-- composer.json
-|-- package.json
-|-- README.md
-|-- server.php
-|-- webpack.mix.js
+
+<pre>
+<code>
+|-- app                   // Direktori untuk kode aplikasi Laravel
+|-- bootstrap             // Direktori untuk file bootstrap Laravel
+|-- config                // Direktori untuk file konfigurasi Laravel
+|-- database              // Direktori untuk migrasi dan pengaturan basis data
+|-- public                // Direktori publik, termasuk file JavaScript dan CSS
+|-- resources             // Direktori untuk sumber daya seperti template, file aset, dan file bahasa
+|-- routes                // Direktori untuk definisi rute aplikasi
+|-- storage               // Direktori untuk file yang dihasilkan oleh aplikasi (misalnya, file log, file upload)
+|-- tests                 // Direktori untuk file tes
+|-- vendor                // Direktori untuk dependensi pihak ketiga
+|-- .env                  // File konfigurasi lingkungan
+|-- .gitignore            // File untuk mengabaikan file/folder yang tidak perlu di-commit ke Git
+|-- artisan               // File utama untuk menjalankan perintah artisan Laravel
+|-- composer.json         // File konfigurasi untuk dependensi PHP
+|-- package.json          // File konfigurasi untuk dependensi JavaScript
+|-- README.md             // Dokumentasi proyek
+|-- server.php            // File utama untuk menjalankan aplikasi Laravel
+|-- webpack.mix.js        // File konfigurasi untuk kompilasi aset menggunakan Laravel Mix
+</code>
+</pre>
+
 
 
 ## Kontribusi
