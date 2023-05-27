@@ -14,7 +14,7 @@ Route::get('/', HomeController::class)->name('home');
 
 Route::middleware('auth:user,admin,teacher')->group(function () {
     Route::get('dashboard', DashboardController::class)->name('dashboard');
-    Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
+    Route::get('logout', [LoginController::class, 'destroy'])->name('logout');
 
     Route::apiResource('users', UserController::class);
     Route::prefix('admin')->name('admins.')->group(function () {

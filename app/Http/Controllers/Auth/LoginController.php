@@ -16,45 +16,34 @@ class LoginController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
-        // dd(Auth::guards());
-        $request->validate([
-            'username' => ['required'],
-            'password' => ['required'],
-        ]);
+        $credentials = $request->only('username', 'password');
+        $credentials['status'] = 1;
 
-        if (Auth::guard('admin')->attempt($this->check_credentials($request), $request->filled('remember'))) {
+        if (filter_var($credentials['username'], FILTER_VALIDATE_EMAIL)) {
+            $usernameField = 'email';
+        } else {
+            $usernameField = 'phone';
+        }
+
+        if (Auth::guard('admin')->attempt([$usernameField => $credentials['username'], 'password' => $credentials['password'], 'status' => $credentials['status']], $request->remember)) {
             session()->put('role', 'admin');
-            return redirect('/dashboard')->with([
-                'type' => 'success',
-                'message' => 'You are logged in.'
+            // dd("ini admin");
+        } elseif (Auth::guard('teacher')->attempt([$usernameField => $credentials['username'], 'password' => $credentials['password'], 'status' => $credentials['status']], $request->remember)) {
+            session()->put('role', 'teacher');
+            // dd('teacher');
+        } elseif (Auth::attempt([$usernameField => $credentials['username'], 'password' => $credentials['password'], 'status' => $credentials['status']], $request->remember)) {
+            session()->put('role', 'user');
+            // dd('user');
+        } else {
+            throw ValidationException::withMessages([
+                'username' => 'The provided credentials do not match our records.',
             ]);
         }
 
-        // else if (Auth::guard('teacher')->attempt($this->check_credentials($request), $request->filled('remember'))) {
-        //     // dd(Auth::guard('teacher')->user()->type);
-        //     Helper::alert('success', 'Selamat Datang !', 'Berhasil Login');
-        //     session()->put('role', 'teacher');
-        //     session()->put('type-teacher', Auth::guard('teacher')->user()->type);
-        //     session()->put('layout', 'teacher');
-        //     return redirect()->route('teacher.dashboard');
-        // } else if (Auth::guard('user')->attempt($this->check_credentials($request), $request->filled('remember'))) {
-        //     session()->put('role', 'student');
-        //     session()->put('id_student', Auth::guard('user')->user()->id);
-        //     Helper::alert('success', 'Selamat Datang ' . Auth::guard('user')->user()->name . '!', 'Berhasil Login');
-        //     return redirect()->route('user.dashboard');
-        // }
-
-        // if (Auth::attempt($request->only('email', 'password'), $request->remember)) {
-        //     session()->regenerate();
-        //     return redirect('/dashboard')->with([
-        //         'type' => 'success',
-        //         'message' => 'You are logged in.'
-        //     ]);
-        // }
-
-        throw ValidationException::withMessages([
-            'username' => 'The provide credentials does not match our record.',
+        session()->regenerate();
+        return redirect('/dashboard')->with([
+            'type' => 'success',
+            'message' => 'You are logged in.'
         ]);
     }
 

@@ -36,7 +36,7 @@ return [
     */
 
     'guards' => [
-        'user' => [
+        'web' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
@@ -44,14 +44,14 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+        'user' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
         'teacher' => [
             'driver' => 'session',
             'provider' => 'teachers',
         ],
-        // 'parent' => [
-        //     'driver' => 'session',
-        //     'provider' => 'parents',
-        // ],
     ],
 
     /*
@@ -72,19 +72,17 @@ return [
     */
 
     'providers' => [
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
-        'admins' => [
-            'driver' => 'eloquent',
-            'table' => App\Models\Admin::class,
-        ],
-
         'teachers' => [
             'driver' => 'eloquent',
-            'table' => App\Models\Teacher::class,
+            'model' => App\Models\Teacher::class,
         ],
     ],
 
